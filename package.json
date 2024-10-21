@@ -1,0 +1,27 @@
+{
+  "name": "next-starter-template",
+  "version": "1.0.0",
+  "main": "./dist/index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "start": "node ./dist/index.js",
+    "dev": "tsx ./src/index.ts",
+    "dev:watch": "tsx watch ./src/index.ts"
+  },
+  "bin": {
+    "create-next-starter": "./dist/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@clack/prompts": "^0.7.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.7",
+    "tsx": "^4.19.1",
+    "typescript": "^5.6.3"
+  }
+}
