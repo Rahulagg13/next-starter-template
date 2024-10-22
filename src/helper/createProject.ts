@@ -10,8 +10,9 @@ import {
   DatabaseORM,
   Language,
   PackageManager,
-  Styling,
 } from "../types/types";
+import { ShadcnBoilerPlate } from "../boilerPlate/ShadcnBoilerPlate";
+import { TailwindBoilerPlate } from "../boilerPlate/TailwindBoilerPlate";
 
 interface createProjectProp {
   projectName: string;
@@ -19,7 +20,7 @@ interface createProjectProp {
   authProvider: AuthProvider;
   databaseORM: DatabaseORM;
   packageManager: PackageManager;
-  styling: Styling;
+  styling: boolean;
   componentLibrary: boolean;
 }
 
@@ -55,6 +56,13 @@ const createProject = ({
     path.join(projectDir, ".gitignore")
   );
   spinner.succeed(`${projectName} ${chalk.green("Created successfully!")}\n`);
+
+  if (styling) {
+    TailwindBoilerPlate({ projectDir, componentLibrary, styling });
+  }
+  if (componentLibrary) {
+    ShadcnBoilerPlate({ projectDir });
+  }
   if (databaseORM !== "none") {
     DbBoilerPlate({ projectDir, databaseORM, authProvider });
   }

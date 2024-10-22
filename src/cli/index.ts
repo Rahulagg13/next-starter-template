@@ -21,13 +21,9 @@ const cli = async () => {
         });
       },
       styling: () => {
-        return p.select({
-          message: "Which styling package do you want to use?",
-          options: [
-            { value: "tailwind", label: "Tailwind" },
-            { value: "none", label: "None" },
-          ],
-          initialValue: "tailwind",
+        return p.confirm({
+          message: "Would you like to include the Tailwindcss?",
+          initialValue: true,
         });
       },
       componentLibrary: () => {

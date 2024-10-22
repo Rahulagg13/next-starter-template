@@ -6,7 +6,6 @@ import {
   DatabaseORM,
   Language,
   PackageManager,
-  Styling,
 } from "./types/types";
 
 const main = async () => {
@@ -30,7 +29,7 @@ const main = async () => {
       authProvider: authProvider as AuthProvider,
       databaseORM: databaseORM as DatabaseORM,
       packageManager: packageManager as PackageManager,
-      styling: styling as Styling,
+      styling,
       componentLibrary,
     });
   } catch (error) {
