@@ -30,13 +30,19 @@ const cli = async () => {
           initialValue: "tailwind",
         });
       },
-      database: () => {
+      componentLibrary: () => {
+        return p.confirm({
+          message: "Would you like to include the Shadcn/ui component library?",
+          initialValue: true,
+        });
+      },
+      databaseORM: () => {
         return p.select({
           message: "What Database ORM you want to use?",
           options: [
-            { value: "prisma", label: "Prisma" },
-            { value: "drizzle", label: "Drizzle" },
             { value: "none", label: "None" },
+            { value: "prisma", label: "Prisma" },
+            // { value: "drizzle", label: "Drizzle" },
           ],
           initialValue: "none",
         });
@@ -45,22 +51,22 @@ const cli = async () => {
         return p.select({
           message: "What authentication provider you want to use?",
           options: [
-            { value: "next-Auth", label: "NextAuth.js" },
-            { value: "clerk", label: "Clerk" },
-            { value: "luciaAuth", label: "Lucia Auth" },
             { value: "none", label: "None" },
+            { value: "next-auth", label: "NextAuth.js" },
+            // { value: "clerk", label: "Clerk" },
+            // { value: "luciaAuth", label: "Lucia Auth" },
           ],
           initialValue: "none",
         });
       },
-      package: () => {
+      packageManager: () => {
         return p.select({
           message: "Which package manager you want to use?",
           options: [
             { value: "npm", label: "npm (Default choice)" },
             { value: "pnpm", label: "pnpm (Faster, more efficient)" },
             { value: "yarn", label: "yarn" },
-            { value: "bun", label: "bun" },
+            // { value: "bun", label: "bun" },
           ],
           initialValue: "npm",
         });
