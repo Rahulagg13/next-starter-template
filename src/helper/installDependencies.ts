@@ -2,30 +2,30 @@ import chalk from "chalk";
 import { execa } from "execa";
 import ora from "ora";
 import { PackageManager } from "../types/types";
+import getPackageManager from "../lib/getPackageManager";
 
 export const InstallDependencies = async ({
   projectDir,
-  packageManager,
 }: {
   projectDir: string;
-  packageManager: PackageManager;
 }) => {
+  const pkg = getPackageManager();
   console.log(chalk.blue(`Installing dependencies...\n`));
-  switch (packageManager) {
+  switch (pkg) {
     case "npm":
-      await execa(packageManager, ["install"], {
+      await execa(pkg, ["install"], {
         cwd: projectDir,
         stdio: "inherit",
       });
       break;
     case "pnpm":
-      await execa(packageManager, ["install"], {
+      await execa(pkg, ["install"], {
         cwd: projectDir,
         stdio: "inherit",
       });
       break;
     case "yarn":
-      await execa(packageManager, {
+      await execa(pkg, {
         cwd: projectDir,
         stdio: "inherit",
       });

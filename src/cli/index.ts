@@ -55,18 +55,6 @@ const cli = async () => {
           initialValue: "none",
         });
       },
-      packageManager: () => {
-        return p.select({
-          message: "Which package manager you want to use?",
-          options: [
-            { value: "npm", label: "npm (Default choice)" },
-            { value: "pnpm", label: "pnpm (Faster, more efficient)" },
-            { value: "yarn", label: "yarn" },
-            // { value: "bun", label: "bun" },
-          ],
-          initialValue: "npm",
-        });
-      },
     },
     {
       // On Cancel callback that wraps the group

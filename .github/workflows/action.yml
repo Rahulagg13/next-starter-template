@@ -9,27 +9,28 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x, 22.x]
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
+      - name: Install pnpm
+        run: npm install -g pnpm
 
-  strategy:
-    matrix:
-      node-version: [18.x, 20.x, 22.x]
-      os: [ubuntu-latest, windows-latest, macos-latest]
+      - name: Install dependencies
+        run: pnpm install
 
-  steps:
-    - uses: actions/checkout@v4
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: "pnpm"
-    - name: Install pnpm
-      run: npm install -g pnpm
-
-    - name: Install dependencies
-      run: pnpm install
-
-    - name: Type check
-      run: pnpm run typecheck
+      - name: Type check
+        run: pnpm run typecheck
       
-    - name: Build project
-      run: pnpm run build
+      - name: Build project
+        run: pnpm run build
+
+      - name: Start project
+        run: pnpm run start

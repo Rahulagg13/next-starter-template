@@ -50,7 +50,7 @@ const FolderStructure = ({
   );
 
   if (styling) {
-    TailwindBoilerPlate({ projectDir, componentLibrary, styling });
+    TailwindBoilerPlate({ projectDir, componentLibrary });
   }
   if (componentLibrary) {
     ShadcnBoilerPlate({ projectDir });

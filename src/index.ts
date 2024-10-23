@@ -5,7 +5,6 @@ import {
   AuthProvider,
   DatabaseORM,
   Language,
-  PackageManager,
 } from "./types/types";
 
 const main = async () => {
@@ -18,7 +17,6 @@ const main = async () => {
       language,
       authProvider,
       databaseORM,
-      packageManager,
       styling,
       componentLibrary,
     } = cliResponse;
@@ -28,7 +26,6 @@ const main = async () => {
       language: language as Language,
       authProvider: authProvider as AuthProvider,
       databaseORM: databaseORM as DatabaseORM,
-      packageManager: packageManager as PackageManager,
       styling,
       componentLibrary,
     });

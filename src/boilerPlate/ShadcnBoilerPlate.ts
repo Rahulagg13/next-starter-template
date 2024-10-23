@@ -1,11 +1,24 @@
 import path from "path";
 import fse from "fs-extra";
+import addPackageDependency from "../helper/addPackageDependency";
 
 interface ShadcnBoilerPlateProp {
   projectDir: string;
 }
 
 export const ShadcnBoilerPlate = ({ projectDir }: ShadcnBoilerPlateProp) => {
+  addPackageDependency({
+    dependencies: [
+      "tailwind-merge",
+      "clsx",
+      "tailwindcss-animate",
+      "@radix-ui/react-icons",
+      "lucide-react",
+      "class-variance-authority",
+    ],
+    devDependencies: false,
+    projectDir,
+  });
   const configPath = "src/template/preferences/componentLibrary/shadcn";
 
   const ShadcnConfig = path.join(configPath, "/src");

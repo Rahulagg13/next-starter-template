@@ -3,7 +3,6 @@ import {
   AuthProvider,
   DatabaseORM,
   Language,
-  PackageManager,
 } from "../types/types";
 import folderStructure from "./folderStructure";
 import { InstallDependencies } from "./installDependencies";
@@ -15,7 +14,6 @@ interface createProjectProp {
   language: Language;
   authProvider: AuthProvider;
   databaseORM: DatabaseORM;
-  packageManager: PackageManager;
   styling: boolean;
   componentLibrary: boolean;
 }
@@ -25,7 +23,6 @@ const createProject = async ({
   language,
   authProvider,
   databaseORM,
-  packageManager,
   styling,
   componentLibrary,
 }: createProjectProp) => {
@@ -41,7 +38,7 @@ const createProject = async ({
     projectName,
     styling,
   });
-  await InstallDependencies({ packageManager, projectDir });
+  await InstallDependencies({ projectDir });
 
   spinner.succeed(`${projectName} ${chalk.green("Created successfully!")}\n`);
 };
