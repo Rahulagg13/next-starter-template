@@ -1,13 +1,10 @@
 import path from "path";
-import {
-  AuthProvider,
-  DatabaseORM,
-  Language,
-} from "../types/types";
+import { AuthProvider, DatabaseORM, Language } from "../types/types";
 import folderStructure from "./folderStructure";
-import { InstallDependencies } from "./installDependencies";
+import { installDependencies } from "./installDependencies";
 import chalk from "chalk";
 import ora from "ora";
+import initializeGit from "./initiializeGit";
 
 interface createProjectProp {
   projectName: string;
@@ -38,7 +35,9 @@ const createProject = async ({
     projectName,
     styling,
   });
-  await InstallDependencies({ projectDir });
+  await installDependencies({ projectDir });
+
+  await initializeGit(projectDir);
 
   spinner.succeed(`${projectName} ${chalk.green("Created successfully!")}\n`);
 };

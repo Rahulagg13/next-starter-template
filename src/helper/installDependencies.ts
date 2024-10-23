@@ -4,7 +4,7 @@ import ora from "ora";
 import { PackageManager } from "../types/types";
 import getPackageManager from "../lib/getPackageManager";
 
-export const InstallDependencies = async ({
+export const installDependencies = async ({
   projectDir,
 }: {
   projectDir: string;
@@ -13,19 +13,19 @@ export const InstallDependencies = async ({
   console.log(chalk.blue(`Installing dependencies...\n`));
   switch (pkg) {
     case "npm":
-      await execa(pkg, ["install"], {
+      await execa(pkg, ["update"], {
         cwd: projectDir,
         stdio: "inherit",
       });
       break;
     case "pnpm":
-      await execa(pkg, ["install"], {
+      await execa(pkg, ["up", "--latest"], {
         cwd: projectDir,
         stdio: "inherit",
       });
       break;
     case "yarn":
-      await execa(pkg, {
+      await execa(pkg, ["upgrade"], {
         cwd: projectDir,
         stdio: "inherit",
       });

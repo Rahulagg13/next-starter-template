@@ -12,7 +12,7 @@ export const dependencyMap = {
   "tailwindcss-animate": "^1.0.7",
 
   //next-auth
-  "next-auth": "^4.24.8",
+  "next-auth": "^5.0.0-beta.23",
   "@auth/prisma-adapter": "^1.6.0",
 
   postcss: "^8.4.47",
