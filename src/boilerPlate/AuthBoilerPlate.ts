@@ -25,8 +25,8 @@ export const AuthBoilerPlate = ({
 
     fse.copySync(NextAuthConfig, NextAuthFile);
 
-    const AuthFileSrc = path.join(configPath, "/src/auth.ts");
-    const AuthFileDest = path.join(projectDir, "/src/lib/auth.ts");
+    const AuthFileSrc = path.join(configPath, "/src/lib");
+    const AuthFileDest = path.join(projectDir, "/src/lib");
 
     fse.copySync(AuthFileSrc, AuthFileDest);
 
