@@ -7,7 +7,8 @@ import { TailwindBoilerPlate } from "../boilerPlate/TailwindBoilerPlate";
 import { ShadcnBoilerPlate } from "../boilerPlate/ShadcnBoilerPlate";
 import { DbBoilerPlate } from "../boilerPlate/DbBoilerPlate";
 import { AuthBoilerPlate } from "../boilerPlate/AuthBoilerPlate";
-import { AuthProvider, DatabaseORM } from "../types/types";
+import { AuthProvider, DatabaseORM, Language } from "../types/types";
+import { AddTemplate } from "../boilerPlate/AddTemplate";
 
 interface folderStructureProp {
   projectDir: string;
@@ -16,6 +17,7 @@ interface folderStructureProp {
   componentLibrary: boolean;
   databaseORM: DatabaseORM;
   authProvider: AuthProvider;
+  language: Language;
 }
 
 const FolderStructure = ({
@@ -25,6 +27,7 @@ const FolderStructure = ({
   componentLibrary,
   databaseORM,
   authProvider,
+  language,
 }: folderStructureProp) => {
   const srcDir = path.resolve(ROOT_FOLDER, "src/template/base");
 
@@ -61,8 +64,8 @@ const FolderStructure = ({
   if (authProvider !== "none") {
     AuthBoilerPlate({ projectDir, authProvider });
   }
+  AddTemplate({ projectDir, language, styling });
   spinner.stop();
-  // spinner.succeed(`${projectName} ${chalk.green("Created successfully!")}\n`);
 };
 
 export default FolderStructure;

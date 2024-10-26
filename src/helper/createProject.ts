@@ -5,6 +5,7 @@ import { installDependencies } from "./installDependencies";
 import chalk from "chalk";
 import ora from "ora";
 import initializeGit from "./initiializeGit";
+import { upgradeDependencies } from "./upgradeDependencies";
 
 interface createProjectProp {
   projectName: string;
@@ -34,8 +35,11 @@ const createProject = async ({
     projectDir,
     projectName,
     styling,
+    language,
   });
+
   await installDependencies({ projectDir });
+  await upgradeDependencies({ projectDir });
 
   await initializeGit(projectDir);
 
