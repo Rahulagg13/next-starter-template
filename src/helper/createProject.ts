@@ -2,10 +2,9 @@ import path from "path";
 import { AuthProvider, DatabaseORM, Language } from "../types/types";
 import folderStructure from "./folderStructure";
 import { installDependencies } from "./installDependencies";
-import chalk from "chalk";
-import ora from "ora";
 import initializeGit from "./initiializeGit";
 import { upgradeDependencies } from "./upgradeDependencies";
+import { logger } from "../lib/logger";
 
 interface createProjectProp {
   projectName: string;
@@ -24,10 +23,7 @@ const createProject = async ({
   styling,
   componentLibrary,
 }: createProjectProp) => {
-  const spinner = ora();
-
   const projectDir = path.resolve(process.cwd(), projectName);
-
   folderStructure({
     authProvider,
     componentLibrary,
@@ -37,13 +33,10 @@ const createProject = async ({
     styling,
     language,
   });
-
   await installDependencies({ projectDir });
   await upgradeDependencies({ projectDir });
-
   await initializeGit(projectDir);
-
-  spinner.succeed(`${projectName} ${chalk.green("Created successfully!")}\n`);
+  logger.success(`${projectName} created successfully!\n`);
 };
 
 export default createProject;

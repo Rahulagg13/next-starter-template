@@ -4,12 +4,12 @@ import ora from "ora";
 import chalk from "chalk";
 
 const initializeGit = async (projectDir: string) => {
-  logger.info("Initializing git...");
+  logger.info("Initializing git...\n");
   await execa("git", ["init"], {
     cwd: projectDir,
-    stdio: "inherit",
+    stdout: "ignore",
   });
-  ora().succeed(chalk.green("Initialized empty Git repository "));
+  ora().succeed(chalk.green("Initialized empty Git repository\n"));
 };
 
 export default initializeGit;

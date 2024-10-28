@@ -4,31 +4,40 @@ import ora from "ora";
 import { PackageManager } from "../types/types";
 import getPackageManager from "../lib/getPackageManager";
 
+const runCommand = async (projectDir: string, pkgManager: PackageManager) => {
+  switch (pkgManager) {
+    case "npm":
+      await execa(pkgManager, ["install"], {
+        cwd: projectDir,
+        stdout: "inherit",
+        stderr: "inherit",
+      });
+      break;
+    case "pnpm":
+      await execa(pkgManager, ["install"], {
+        cwd: projectDir,
+        stdout: "inherit",
+        stderr: "inherit",
+      });
+      break;
+    case "yarn":
+      await execa(pkgManager, {
+        cwd: projectDir,
+        stdout: "inherit",
+        stderr: "inherit",
+      });
+      break;
+  }
+};
+
 export const installDependencies = async ({
   projectDir,
 }: {
   projectDir: string;
 }) => {
-  const pkg: PackageManager = getPackageManager();
-  console.log(chalk.blue(`Installing dependencies...\n`));
-  switch (pkg) {
-    case "npm":
-      await execa(pkg, ["install"], {
-        cwd: projectDir,
-        stdio: "inherit",
-      });
-      break;
-    case "pnpm":
-      await execa(pkg, ["install"], {
-        cwd: projectDir,
-        stdio: "inherit",
-      });
-      break;
-    case "yarn":
-      await execa(pkg, {
-        cwd: projectDir,
-        stdio: "inherit",
-      });
-  }
-  ora().succeed(chalk.green("Dependencies installed successfully!"));
+  const pkgManager: PackageManager = getPackageManager();
+  console.log(chalk.blue("Installing dependencies..."));
+  await runCommand(projectDir, pkgManager);
+
+  ora().succeed(chalk.green("Successfully installed dependencies!\n"));
 };

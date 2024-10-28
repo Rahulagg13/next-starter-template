@@ -10,7 +10,7 @@ export const upgradeDependencies = async ({
   projectDir: string;
 }) => {
   const pkg: PackageManager = getPackageManager();
-  console.log(chalk.blue(`Upgrading dependencies...\n`));
+  console.log(chalk.blue(`Upgrading dependencies...`));
 
   switch (pkg) {
     case "npm":
@@ -32,5 +32,5 @@ export const upgradeDependencies = async ({
         stdout: "inherit",
       });
   }
-  ora().succeed(chalk.green("Dependencies updated successfully!"));
+  ora().succeed(chalk.green("Dependencies updated successfully!\n"));
 };

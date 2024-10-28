@@ -8,7 +8,7 @@ export const logger = {
     console.log(chalk.yellow(...args));
   },
   info(...args: unknown[]) {
-    console.log(chalk.cyan(...args));
+    console.log(chalk.blueBright(...args));
   },
   success(...args: unknown[]) {
     console.log(chalk.green(...args));

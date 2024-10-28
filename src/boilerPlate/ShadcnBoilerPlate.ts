@@ -1,6 +1,7 @@
 import path from "path";
 import fse from "fs-extra";
 import addPackageDependency from "../helper/addPackageDependency";
+import { FOLDER_PATH } from "../lib/const";
 
 interface ShadcnBoilerPlateProp {
   projectDir: string;
@@ -19,7 +20,7 @@ export const ShadcnBoilerPlate = ({ projectDir }: ShadcnBoilerPlateProp) => {
     devDependencies: false,
     projectDir,
   });
-  const configPath = "src/template/preferences/componentLibrary/shadcn";
+  const configPath = `${FOLDER_PATH}/componentLibrary/shadcn`;
 
   const ShadcnConfig = path.join(configPath, "/src");
   const ShadcnFile = path.join(projectDir, "/src");

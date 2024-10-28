@@ -1,5 +1,5 @@
 import path from "path";
-import { ROOT_FOLDER } from "../lib/const";
+import { FOLDER_PATH, ROOT_FOLDER } from "../lib/const";
 import fse from "fs-extra";
 import { AuthProvider, DatabaseORM } from "../types/types";
 import addPackageDependency from "../helper/addPackageDependency";
@@ -16,7 +16,7 @@ export const DbBoilerPlate = ({
   databaseORM,
   authProvider,
 }: DbBoilerPlateProp) => {
-  const configPath = "src/template/preferences/orm";
+  const configPath = `${FOLDER_PATH}/orm`;
 
   const deps: AvailableDependencies[] = ["@prisma/client"];
 

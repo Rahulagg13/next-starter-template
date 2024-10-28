@@ -10,8 +10,6 @@ import {
 const main = async () => {
   try {
     const cliResponse = await cli();
-    console.log(cliResponse);
-
     const {
       projectName,
       language,
@@ -21,7 +19,7 @@ const main = async () => {
       componentLibrary,
     } = cliResponse;
 
-    createProject({
+    await createProject({
       projectName,
       language: language as Language,
       authProvider: authProvider as AuthProvider,

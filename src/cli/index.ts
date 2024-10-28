@@ -1,4 +1,5 @@
 import * as p from "@clack/prompts";
+import chalk from "chalk";
 
 const cli = async () => {
   const group = await p.group(
@@ -19,6 +20,11 @@ const cli = async () => {
           ],
           initialValue: "typeScript",
         });
+      },
+      _: ({ results }) => {
+        return results.language === "javaScript"
+          ? p.note(chalk.redBright("We currently only support TypeScript. Please use TypeScript instead"))
+          : undefined;
       },
       styling: () => {
         return p.confirm({

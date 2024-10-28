@@ -1,6 +1,7 @@
 import path from "path";
 import fse from "fs-extra";
 import addPackageDependency from "../helper/addPackageDependency";
+import { FOLDER_PATH } from "../lib/const";
 
 interface TailwindBoilerPlateProp {
   projectDir: string;
@@ -11,7 +12,7 @@ export const TailwindBoilerPlate = ({
   projectDir,
   componentLibrary,
 }: TailwindBoilerPlateProp) => {
-  const configPath = "src/template/preferences/tailwindConfig";
+  const configPath = `${FOLDER_PATH}/tailwindConfig`;
 
   addPackageDependency({
     dependencies: ["tailwindcss", "postcss"],

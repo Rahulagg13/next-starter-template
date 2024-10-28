@@ -1,11 +1,11 @@
 import fse from "fs-extra";
 import path from "path";
 import sortPackageJson from "sort-package-json";
-
 import {
   dependencyMap,
   type AvailableDependencies,
 } from "../lib/dependencyMap";
+import { getParseFolderName } from "../lib/getParseFolderName";
 
 const addPackageDependency = (options: {
   dependencies: AvailableDependencies[];
@@ -14,6 +14,7 @@ const addPackageDependency = (options: {
 }) => {
   const { dependencies, devDependencies, projectDir } = options;
   const packageJson = fse.readJSONSync(path.join(projectDir, "package.json"));
+  packageJson.name = getParseFolderName(projectDir);
 
   dependencies.forEach((pkg) => {
     if (devDependencies && packageJson.devDependencies) {
@@ -22,6 +23,7 @@ const addPackageDependency = (options: {
       packageJson.dependencies[pkg] = dependencyMap[pkg];
     }
   });
+
   const sortedJson = sortPackageJson(packageJson);
   fse.writeJsonSync(path.join(projectDir, "package.json"), sortedJson, {
     spaces: 2,

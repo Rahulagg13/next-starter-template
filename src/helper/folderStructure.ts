@@ -9,6 +9,8 @@ import { DbBoilerPlate } from "../boilerPlate/DbBoilerPlate";
 import { AuthBoilerPlate } from "../boilerPlate/AuthBoilerPlate";
 import { AuthProvider, DatabaseORM, Language } from "../types/types";
 import { AddTemplate } from "../boilerPlate/AddTemplate";
+import { logger } from "../lib/logger";
+import getPackageManager from "../lib/getPackageManager";
 
 interface folderStructureProp {
   projectDir: string;
@@ -30,18 +32,18 @@ const FolderStructure = ({
   language,
 }: folderStructureProp) => {
   const srcDir = path.resolve(ROOT_FOLDER, "src/template/base");
+  const pkgManager = getPackageManager();
 
-  const spinner = ora(
-    `${chalk.green(`Creating a new Next.js project in ${projectName}...`)}`
-  ).start();
+  logger.info(`\nUsing: ${chalk.blue.bold(pkgManager)}\n`);
+  logger.info(`Creating a new Next.js project in ${projectDir}`);
+
+  const spinner = ora().start();
 
   if (fse.existsSync(projectDir)) {
     spinner.fail(`${chalk.cyan.bold(projectName)} exists\n`);
     process.exit(1);
   } else {
-    spinner.stopAndPersist({
-      symbol: `${chalk.green("✔")}`,
-    });
+    spinner.stopAndPersist();
     fse.emptyDirSync(projectDir);
   }
   spinner.start();
