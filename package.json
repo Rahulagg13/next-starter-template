@@ -1,12 +1,12 @@
 {
-  "name": "next-starter-template",
-  "version": "1.0.1",
+  "name": "create-next-starter",
+  "version": "1.0.2",
   "type": "module",
   "license": "MIT",
   "author": "Rahul Aggarwal",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Rahulagg13/next-starter-template.git",
+    "url": "git+https://github.com/Rahulagg13/next-starter-template.git",
     "directory": "src"
   },
   "keywords": [
@@ -33,7 +33,7 @@
     "tsx:cmd": "tsx  ./src/helper/installDependencies.ts "
   },
   "bin": {
-    "create-next-starter": "./dist/index.js"
+    "create-next-starter": "dist/index.js"
   },
   "dependencies": {
     "@changesets/changelog-github": "^0.5.0",
