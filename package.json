@@ -23,7 +23,7 @@
     "fs-extra": "^11.2.0",
     "ora": "^8.1.0",
     "sort-package-json": "^2.10.1",
-    "tsx": "^4.19.1"
+    "tsx": "^4.19.2"
   },
   "devDependencies": {
     "@prisma/client": "^5.21.1",
