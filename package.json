@@ -26,6 +26,7 @@
     "package.json"
   ],
   "scripts": {
+    "clean": "rm -rf dist",
     "build": "tsup",
     "start": "node ./dist/index.js",
     "dev": "tsup --watch",

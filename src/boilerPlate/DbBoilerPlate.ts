@@ -51,6 +51,18 @@ export const DbBoilerPlate = ({
     const prismaClientDest = path.join(projectDir, "/src/db/client.ts");
 
     fse.copySync(prismaClientSrc, prismaClientDest);
+    const packageJson = fse.readJSONSync(path.join(projectDir, "package.json"));
+    packageJson.scripts = {
+      ...packageJson.scripts,
+      postinstall: "prisma generate",
+      "db:push": "prisma db push",
+      "db:studio": "prisma studio",
+      "db:generate": "prisma migrate dev",
+      "db:migrate": "prisma migrate deploy",
+    };
+    fse.writeJSONSync(path.join(projectDir, "package.json"), packageJson, {
+      spaces: 2,
+    });
   }
   // else if (databaseORM === "drizzle") {
   //   //latter
