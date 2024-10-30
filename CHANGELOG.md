@@ -1,7 +1,7 @@
 # Changelog
 
 
-## Version 1.0.8
+## Version 1.1.1
 
 Add **typescript**, **tailwind**, **shadcn**, **prisma** support
 
