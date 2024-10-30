@@ -2,6 +2,10 @@
 
 A starter template for Next.js projects with some nice features pre-configured.
 
+Get started by running 
+```
+npx next-starter-template
+```
 ## Features
 
 - TypeScript support
@@ -17,7 +21,7 @@ A starter template for Next.js projects with some nice features pre-configured.
 
 ## How to use
 
-1. Run `npx next-starter`
+1. Run `npx next-starter-template`
 2. Follow the prompts to choose your preferences
 3. Install the dependencies with your package manager of choice (e.g. `npm install` or `yarn`)
 4. Start the development server with `npm run dev` or `yarn dev`
@@ -34,4 +38,3 @@ The project comes with some pre-configured files that you can customize to your 
 ## Contributing
 
 Contributions are welcome! Please open an issue or a pull request if you have any suggestions or improvements.
-

@@ -2,7 +2,7 @@ import path from "path";
 import fse from "fs-extra";
 import { AuthProvider } from "../types/types";
 import addPackageDependency from "../helper/addPackageDependency";
-import { FOLDER_PATH } from "../lib/const";
+import { ROOT_FOLDER } from "../lib/const";
 
 interface AuthBoilerPlateProp {
   projectDir: string;
@@ -14,7 +14,10 @@ export const AuthBoilerPlate = ({
   authProvider,
 }: AuthBoilerPlateProp) => {
   if (authProvider === "next-auth") {
-    const configPath = `${FOLDER_PATH}/authProvider/nextauth`;
+    const configPath = path.join(
+      ROOT_FOLDER,
+      `src/template/preferences/authProvider/nextauth`
+    );
     addPackageDependency({
       dependencies: ["next-auth"],
       devDependencies: false,

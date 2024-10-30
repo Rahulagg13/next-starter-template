@@ -1,5 +1,5 @@
 import path from "path";
-import { FOLDER_PATH, ROOT_FOLDER } from "../lib/const";
+import { ROOT_FOLDER } from "../lib/const";
 import fse from "fs-extra";
 import { AuthProvider, DatabaseORM } from "../types/types";
 import addPackageDependency from "../helper/addPackageDependency";
@@ -16,23 +16,21 @@ export const DbBoilerPlate = ({
   databaseORM,
   authProvider,
 }: DbBoilerPlateProp) => {
-  const configPath = `${FOLDER_PATH}/orm`;
+  const configPath = path.join(ROOT_FOLDER, `src/template/preferences/orm`);
 
   const deps: AvailableDependencies[] = ["@prisma/client"];
 
   if (databaseORM === "prisma") {
-    const prismaConfig = configPath + "/prismaConfig/prismaSchema";
+    const prismaConfig = path.join(configPath, "/prismaConfig/prismaSchema");
+    
     const prismaFile = path.join(projectDir, "/prisma/schema.prisma");
 
     if (authProvider === "next-auth") {
       deps.push("@auth/prisma-adapter");
-      const prismaSrc = path.join(
-        ROOT_FOLDER,
-        `${prismaConfig}/with-nextAuth.prisma`
-      );
+      const prismaSrc = path.join(prismaConfig, `/with-nextAuth.prisma`);
       fse.copySync(prismaSrc, prismaFile);
     } else {
-      const prismaSrc = path.join(ROOT_FOLDER, `${prismaConfig}/base.prisma`);
+      const prismaSrc = path.join(prismaConfig, `/base.prisma`);
       fse.copySync(prismaSrc, prismaFile);
     }
 
